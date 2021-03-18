@@ -12,21 +12,18 @@ import db from '../lib/models';
 const debug = debugPkg('js/www:server');
 
 /**
- * Get port from environment and store in Express.
- */
-
-const port = normalizePort(process.env.PORT || '3001');
-app.set('port', port);
-
-/**
  * Create HTTP server.
  */
 
 const server = http.createServer(app);
 
 /**
- * Listen on provided port, on all network interfaces.
+ * Listen on the port set on the app, on all network interfaces.
  */
+const port = app.get('port');
+if (!port) {
+  throw '¡¡Hay que setear el port de la aplicación Express!!';
+}
 
 // Run sequelize before listen
 db.sequelize.authenticate().then(() => {
@@ -37,26 +34,6 @@ db.sequelize.authenticate().then(() => {
 
 server.on('error', onError);
 server.on('listening', onListening);
-
-/**
- * Normalize a port into a number, string, or false.
- */
-
-function normalizePort(val) {
-  const portNum = parseInt(val, 10);
-
-  if (Number.isNaN(portNum)) {
-    // named pipe
-    return val;
-  }
-
-  if (portNum >= 0) {
-    // port number
-    return portNum;
-  }
-
-  return false;
-}
 
 /**
  * Event listener for HTTP server "error" event.
