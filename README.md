@@ -1,6 +1,11 @@
 # Repositorio semilla: API NodeJS :seedling:
 
-> Este es uno de los repositorios que utilizamos en la serie **Tu primera aplicación full stack: NodeJS + React**, [disponible en YouTube](https://www.youtube.com/playlist?list=PL7q-McYJyHlgVGQIRYVKl381twyJ4XM_h). Te recomendamos que mires la serie para entender un poco más sobre las tecnologías que elegimos. :smiley:
+> Este repositorio es un fork de [otro que está en la organización surprograma](https://github.com/surprograma/nodejs-api-seed).  
+> El original es uno de los repositorios que se usan en la serie de videos **Tu primera aplicación full stack: NodeJS + React**, [disponible en YouTube](https://www.youtube.com/playlist?list=PL7q-McYJyHlgVGQIRYVKl381twyJ4XM_h).  
+> Mirar estos videos es una muy buena forma de entender un poco más sobre las tecnologías que van a usarse. :smiley:
+>
+> A continuación, transcribimos los comentarios del repo de surprograma.
+> En el medio, incluimos algunas aclaraciones que (creo) pueden venir bien en el contexto de la materia.
 
 ¡Bienvenida/o! En este repositorio encontrarás una plantilla (de las infinitas posibles) para crear una API utilizando NodeJS. Las principales tecnologías que utilizamos son:
 
@@ -23,7 +28,15 @@ Vas a necesitar un IDE o al menos un editor de texto que coloree la sintaxis. Re
 
 Para ejecutar el código es necesario tener NodeJS en su versión 14 (`lts/fermium`). Para instalarlo recomendamos utilizar el manejador de versiones [`nvm`](https://github.com/nvm-sh/nvm), aunque también podés hacerlo manualmente siguiendo las instrucciones adecuadas para tu sistema operativo.
 
+> **Nota**  
+> `nvm` no está disponible para Windows. Yo que uso Windows, me instalé [nvm for Windows](https://github.com/coreybutler/nvm-windows) y me viene andando.
+
 Por último, se incluye un archivo de [Docker Compose](https://docs.docker.com/compose/) con todo lo necesario para instalar y configurar las bases de datos en PostgreSQL (una para desarrollo y otra para test). Si por algún motivo no querés usar Docker, vas a tener que instalar PostgreSQL y luego ejecutar el script `docker/init/crear-db.sh` en tu entorno.
+
+> **Nota**  
+> Si no manejan Docker, creo que les conviene arrancar sin "dockerizar".
+> Es cierto que tienen que instalarse PostgreSQL y crear las bases de desarrollo y test.  
+> Para eso se puede, o bien ejecutar el script que se indica arriba, o bien abrirlo y ejecutar las sentencias SQL que están ahí, desde alguna herramienta que les permita manejar bases de datos relacionales. Yo uso la versión community de DBeaver (https://dbeaver.io/) y no tengo quejas hasta ahora.
 
 ## :ballot_box_with_check: Configuración inicial del proyecto
 
@@ -51,6 +64,9 @@ De manera opcional, también podés cargar unos datos de prueba, llamados _seede
 # (Opcional) Carga los datos de prueba en la base de desarrollo.
 npm run db:seed
 ```
+
+> **Nota**  
+> Los seeders son un concepto ligado a Sequelize. Busquen a partir de "Creating the first Seed" en [esta página](https://sequelize.org/master/manual/migrations.html).
 
 ## :file_folder: Estructura de directorios
 
@@ -106,3 +122,21 @@ npx sequelize seed:generate --name edificios
 # Deshace la última migración.
 npx sequelize db:migrate:undo
 ```
+
+## Acciones automáticas
+
+Este repositorio está configurado para hacer un formateo automático de código al grabar, y para formatear y pasar chequeos al commitear.
+
+Si algún grupo quisiera desactivar estas opciones, se hace así.
+
+### Formateo automático al grabar
+
+En el archivo `/vscode/settings.json` cambiar el valor de `editor.formatOnSave`.
+
+### Acciones al commitear
+
+Se configuran en el archivo `package.json`, en el atributo `husky`.
+Actualmente, este atributo hace referencia a otro atributo `lint-staged`.
+
+- Si se eliminan ambos elementos del `package.json`, no va a hacer ninguna acción previa a commitear.
+- Si se modifica `lint-staged`, se puede eliminar, o modificar la configuración, del chequeo (`eslint`) y/o el formateo (`prettier`) de código. Obviamente, para modificar las configuraciones, hay que mirar cómo en la documentación de [ESLint](https://eslint.org/) y/o [Prettier](https://prettier.io/).
