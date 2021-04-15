@@ -106,28 +106,11 @@ npm test:watch
 
 ### Base de datos
 
-**Atención**  
-A todos los comandos que siguen hay que ponerle atrás `--url 'postgresql://<usuario_bd>:<password_bd>@<host_bd>/<base>'`.
-
-P.ej. con los datos del archivo `.env.example` lo que hay que poner en estos comandos es, para la base de desarrollo
-
-```
---url 'postgresql://unahur_desapp:desarrollo@localhost/unahur_desapp_dev'
-```
-
-y para la base de test
-
-```
---url 'postgresql://unahur_desapp:desarrollo@localhost/unahur_desapp_test'
-```
-
-**Acá van los comandos**  
-recuerden que todos van con el `--url ...` detrás.  
-Ejecútenlos en una consola ubicada en la carpeta raíz del proyecto.
+Estos comandos se tienen que ejecutar en una consola ubicada en la carpeta raíz del proyecto.
 
 ```shell
 # Ejecuta las migraciones.
-npm run db:migrate
+npm run db:init
 
 # Carga los datos de prueba.
 npm run db:seed
