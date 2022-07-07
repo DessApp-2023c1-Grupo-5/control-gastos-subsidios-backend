@@ -28,7 +28,9 @@ if (!port) {
 // Run sequelize before listen
 db.sequelize.authenticate().then(() => {
   app.listen(port, () => {
-    console.log(`¡Aplicación iniciada! ====> 🌎 http://localhost:${port}`);
+    console.log(
+      `[Control Gastos de subsidios] ¡Aplicación iniciada! ====> 🌎 http://localhost:${port}`
+    );
   });
 });
 
