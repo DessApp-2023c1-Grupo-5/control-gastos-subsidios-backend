@@ -4,6 +4,9 @@ module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.bulkInsert('Usuarios', [
       {
+        usuario: 'azurduy',
+        contraseña: '123456',
+        rol: 'admin',
         nombre: 'Juana',
         apellido: 'Azurduy',
         fechaNacimiento: '1780-07-12',
@@ -12,8 +15,12 @@ module.exports = {
         updatedAt: new Date(),
       },
       {
+        usuario: 'artigas',
+        contraseña: '123456',
+        rol: 'otro',
         nombre: 'José',
         apellido: 'Artigas',
+        contraseña: '123456',
         fechaNacimiento: '1764-06-19',
         avatarUrl:
           'https://www.famousbirthdays.com/faces/artigas-jose-image.jpg',
@@ -21,6 +28,9 @@ module.exports = {
         updatedAt: new Date(),
       },
       {
+        usuario: 'bolivar',
+        contraseña: '123456',
+        rol: 'otro',
         nombre: 'Simón',
         apellido: 'Bolívar',
         fechaNacimiento: '1783-04-24',
